@@ -5,12 +5,19 @@
     <title>Aidan's Music Database</title>
     <div><a href="/base">Aidan's Fav Music</a><a href="/Artists">List of Artists</a>
         <a href="/newArtist">Create a New Artists</a></div>
-    <h1> Welcome to Aidan's favorite Music Database</h1>
+    <h1>Aidan's favorite Music Database</h1>
 </head>
 <body>
+ <div class="container">
+    {% for message in get_flashed_messages() %}
+        {{ message }}
+    </div>
+    {%  endfor %}
+{% block content %}
+
 <div><h3>Music database</h3>
 <p>Here are some of Aidan's favorite musicians/bands. The songs from these artists are fun, and often provides a theraputic listen for Aidan</p></div>
 
-{% block content %}{% endblock %}
+{% endblock %}
 </body>
 </html>

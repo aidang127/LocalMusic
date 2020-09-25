@@ -1,16 +1,36 @@
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>local music DB</title>
-    <div><a href="/base">Aidan's Fav Music</a> <a href="/Artists">List of Artists</a>
-        <a href="/newArtist">Create a New Artists</a></div>
-    <h1> Welcome to local music db</h1>
-</head>
-<body>
-<div><h3>Page Under Construction</h3>
-    <p>More Content Coming Soon</p></div>
+<{% extends "base.html" %}
+ <p>
+ {% block content %}
+<form action="" method="post">
+{{ form.hidden_tag() }}
+            {{ form.artistName.label }}<br>
+            {{ form.artistName(size=32) }}<br>
+            {% for error in form.artistName.errors %}
+            <span style="color: #ff0000;">[{{ error }}]</span>
+       {% endfor %}
+
+            {{ form.hometown.label }}<br>
+            {{ form.hometown(size=32) }}<br>
+            {% for error in form.hometown.errors %}
+            <span style="color: #ff0000;">[{{ error }}]</span>
+       {% endfor %}
+
+            {{ form.artistDescription.label }}<br>
+            {{ form.artistDescription(rows="20", cols="20") }}<br>
+            {% for error in form.artistDescription.errors %}
+            <span style="color: #ff0000;">[{{ error }}]</span>
+           {% endfor %}
+
+{{ form.submit() }}
+
+
+
+        </p>
+
+     </form>
+{%  endblock %}
+
 
 </body>
 </html>

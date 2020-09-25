@@ -1,6 +1,7 @@
-from flask import render_template, url_for
+from flask import render_template, url_for, flash
 from app import app
 import random
+from app.forms import CreateArtistForm
 
 @app.route('/')
 @app.route('/base')
@@ -9,8 +10,13 @@ def base():
 
 @app.route('/Artist')
 def Artist():
-    return render_template('Artist.html')
-
+    info = {
+        "artistName": "Imagine Dragons",
+        "hometown" : "Las Vegas",
+        "artistDescription" : "a las vegas born band",
+        "events": []
+    }
+    return render_template('Artist.html', info=info)
 @app.route('/Artists')
 def Artists():
     artists = [
@@ -22,7 +28,17 @@ def Artists():
     ]
     return render_template('Artists.html', title='FavArtists', artists=artists)
 
-@app.route('/newArtist')
+@app.route('/newArtist', methods=['GET', 'POST'])
 def newArtist():
-    return render_template('newArtist.html')
+    form = CreateArtistForm()
+    if form.validate_on_submit():
+        flash('New Artist Created: {}'.format(form.artistName.data))
+        new_form = CreateArtistForm()
+        info = {}
+        info ["artistName"] = form.artistName.data
+        info["hometown"] = form.hometown.data
+        info["artistDescription"] = form.artistDescription.data
+        info["events"] = []
 
+        return render_template('Artist.html', info=info)
+    return render_template('newArtist.html',title="Create Artists", form=form)
