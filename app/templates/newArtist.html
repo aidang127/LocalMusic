@@ -4,9 +4,9 @@
  {% block content %}
 <form action="" method="post">
 {{ form.hidden_tag() }}
-            {{ form.artistName.label }}<br>
-            {{ form.artistName(size=32) }}<br>
-            {% for error in form.artistName.errors %}
+            {{ form.name.label }}<br>
+            {{ form.name(size=32) }}<br>
+            {% for error in form.name.errors %}
             <span style="color: #ff0000;">[{{ error }}]</span>
        {% endfor %}
 
@@ -16,15 +16,7 @@
             <span style="color: #ff0000;">[{{ error }}]</span>
        {% endfor %}
 
-            {{ form.artistDescription.label }}<br>
-            {{ form.artistDescription(rows="20", cols="20") }}<br>
-            {% for error in form.artistDescription.errors %}
-            <span style="color: #ff0000;">[{{ error }}]</span>
-           {% endfor %}
-
 {{ form.submit() }}
-
-
 
         </p>
 
