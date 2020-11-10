@@ -2,10 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Aidan's Music Database</title>
-    <div><a href="/base">Aidan's Fav Music</a><a href="/Artists">List of Artists</a>
-        <a href="/newArtist">Create a New Artists</a></div>
+    <title>Aidan's Music Database</title><br>
+    <div>
+        <a href="/base">Home</a>
+        <a href="/Artists">List of Artists</a>
+        {% if current_user.is_anonymous %}
+            <a href="/login">Login</a>
+        {% else %}
+            <a href="/newArtist">Create a New Artists</a>
+            <a href="/newEvent">Create a New Event</a>
+            <a href="/newVenue">Create a New Venue</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        {% endif %}
+    </div>
     <h1>Aidan's favorite Music Database</h1>
+<h1>Hi, {{ current_user.username }}!</h1>
+{% for post in posts %}
+<div><p>{{ post.author.username }} says: <b>{{ post.body }}</b></p></div> {% endfor %}
 </head>
 <body>
  <div class="container">
@@ -17,6 +30,8 @@
 
 <div><h3>Music database</h3>
 <p>Here are some of Aidan's favorite musicians/bands. The songs from these artists are fun, and often provides a theraputic listen for Aidan</p></div>
+
+
 
 {% endblock %}
 </body>
