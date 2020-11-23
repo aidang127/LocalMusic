@@ -1,6 +1,7 @@
 {% extends "base.html" %}
-{%  block content %}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% block app_content %}
 {%  for artist in artists %}
-    <div><p> < <a href="{{ url_for('artist', name=artist.name) }}">{{ artist.name }}</a>
+    <div><p> - <a href="{{ url_for('artist', name=artist.name) }}">{{ artist.name }}</a>
     {%  endfor %}
 {% endblock %}

@@ -1,5 +1,6 @@
 {% extends "base.html" %}
-{%  block content %}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% block app_content %}
     <h1>{{ info.name }}</h1>
     <h2>{{ info.hometown }}</h2>
 <h3>Upcoming Events</h3>
